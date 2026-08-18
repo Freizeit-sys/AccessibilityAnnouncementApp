@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  AccessibilityApp
-//
-//  Created by Yuki Morishita on 2026/08/16.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -17,16 +10,18 @@ class ViewController: UIViewController {
     // focus
     @IBOutlet weak var fastwinButton2: UIButton!
     @IBOutlet weak var lastwinButton2: UIButton!
-    @IBOutlet weak var queueButton2: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         fastwinButton.accessibilityTraits = .none
         lastwinButton.accessibilityTraits = .none
         queueButton.accessibilityTraits = .none
+        
+        fastwinButton2.accessibilityTraits = .none
+        lastwinButton2.accessibilityTraits = .none
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
@@ -34,37 +29,31 @@ class ViewController: UIViewController {
     // speech
     
     @IBAction func fastwin(_ sender: Any) {
-        AccessibilityAnnouncementService.shared.announce(AccessibilityAnnouncement.Common.success)
-        AccessibilityAnnouncementService.shared.announce(AccessibilityAnnouncement.Common.failure, priority: .FAST_WIN)
+        AccessibilityNotificationService.shared.postAnnouncement(AccessibilityAnnouncement.Common.success)
+        AccessibilityNotificationService.shared.postAnnouncement(AccessibilityAnnouncement.Common.failure, priority: .FIRST_WIN)
     }
     
     @IBAction func lastwin(_ sender: Any) {
-        AccessibilityAnnouncementService.shared.announce(AccessibilityAnnouncement.Common.failure)
-        AccessibilityAnnouncementService.shared.announce(AccessibilityAnnouncement.Common.success, priority: .LAST_WIN)
+        AccessibilityNotificationService.shared.postAnnouncement(AccessibilityAnnouncement.Common.failure)
+        AccessibilityNotificationService.shared.postAnnouncement(AccessibilityAnnouncement.Common.success, priority: .LAST_WIN)
     }
     
     @IBAction func queue(_ sender: Any) {
-        AccessibilityAnnouncementService.shared.announce(AccessibilityAnnouncement.Common.failure, priority: .QUEUE)
-        AccessibilityAnnouncementService.shared.announce(AccessibilityAnnouncement.Common.success, priority: .QUEUE)
+        AccessibilityNotificationService.shared.postAnnouncement(AccessibilityAnnouncement.Common.failure, priority: .QUEUE)
+        AccessibilityNotificationService.shared.postAnnouncement(AccessibilityAnnouncement.Common.success, priority: .QUEUE)
     }
     
     
     // focus
     
     @IBAction func fastwin2(_ sender: Any) {
-        AccessibilityAnnouncementService.shared.focusOnScreen(lastwinButton2)
-        AccessibilityAnnouncementService.shared.focusOnScreen(fastwinButton2, priority: .FAST_WIN)
+        AccessibilityNotificationService.shared.postAnnouncement(AccessibilityAnnouncement.Home.timelineRefreshed)
+        AccessibilityNotificationService.shared.postLayoutChange(element: lastwinButton, priority: .FIRST_WIN)
     }
     
     @IBAction func lastwin2(_ sender: Any) {
-        AccessibilityAnnouncementService.shared.focusOnElement(fastwinButton2)
-        AccessibilityAnnouncementService.shared.focusOnElement(lastwinButton2, priority: .LAST_WIN)
-    }
-    
-    @IBAction func queue2(_ sender: Any) {
-        AccessibilityAnnouncementService.shared.focusOnElement(fastwinButton2, priority: .QUEUE)
-        AccessibilityAnnouncementService.shared.focusOnElement(lastwinButton2, priority: .QUEUE)
-        AccessibilityAnnouncementService.shared.focusOnElement(queueButton2, priority: .QUEUE)
+        AccessibilityNotificationService.shared.postLayoutChange(element: fastwinButton2)
+        AccessibilityNotificationService.shared.postLayoutChange(element: lastwinButton2, priority: .LAST_WIN)
     }
     
 }

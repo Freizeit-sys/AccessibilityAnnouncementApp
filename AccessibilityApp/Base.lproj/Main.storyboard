@@ -77,9 +77,6 @@
                                                 <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="0.40115367383512546" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="QUEUE"/>
-                                                <connections>
-                                                    <action selector="queue2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zKQ-iS-eyv"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -101,7 +98,6 @@
                         <outlet property="lastwinButton" destination="Cxn-FT-Xvs" id="ZcQ-Cs-CJx"/>
                         <outlet property="lastwinButton2" destination="t9q-rl-7Qx" id="xZL-dC-c9p"/>
                         <outlet property="queueButton" destination="4iv-Lj-6jE" id="Hz9-NN-gF3"/>
-                        <outlet property="queueButton2" destination="jPG-r0-6UR" id="CZA-9S-T7o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
